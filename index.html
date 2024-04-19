@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Markdown Previewer</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    
+    <script >
+        const updatePreview = () => {
+            let previewElement = document.getElementById('preview');
+            let editorValue = document.getElementById('editor').value;
+            let markedUpHTML = marked(editorValue);
+            previewElement.innerHTML = markedUpHTML; 
+            
+        }
+        const setDefault = () => {
+            let defaultText = `# Welcome to my React Markdown Previewer!
+## This is a sub-heading...
+### And here's some other cool stuff:
+  
+Heres some code, \`<div></div>\`, between 2 backticks.
+
+\`\`\`
+// this is multi-line code:
+
+function anotherExample(firstLine, lastLine) {
+  if (firstLine == '\`\`\`' && lastLine == '\`\`\`') {
+    return multiLineCode
+  }
+}
+\`\`\`
+
+You can also make text **bold**... whoa!
+Or _italic_.
+Or... wait for it... **_both!_**
+And feel free to go crazy ~~crossing stuff out~~.
+There's also [links](https://www.freecodecamp.org), and
+> Block Quotes!
+- And of course there are lists.
+  - Some are bulleted.
+     - With different indentation levels.
+        - That look like this.
+
+
+1. And there are numbered lists too.
+1. Use just 1s if you want!
+1. And last but not least, let's not forget embedded images:
+
+![freeCodeCamp relaxing cat](https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg)
+`
+ ;
+ marked.setOptions({
+  breaks: true,
+});
+            let editorField = document.getElementById('editor');
+            let previewElement = document.getElementById('preview');
+            editorField.value = defaultText;
+            previewElement.innerHTML = marked(defaultText);
+            
+        };
+    </script>
+</head>
+
+<body onload="setDefault()">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col text-center text-wight bg-success">
+                <h1>Markdown Previewer</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 bg-primary">
+                <p>Editor:</p>
+                <div class="form-group">
+                <textarea id="editor" class="form-control" onkeyup="updatePreview()"></textarea>
+            </div>
+            </div>
+            <div class="col-6 bg-warning">
+                <p>Preview:</p>
+                <div  id="preview" ></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/1.1.0/marked.js"></script>
+
+</body>
+</html>
